@@ -1,5 +1,5 @@
 <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
-  <a class="navbar-brand" href="#">Recipes</a>
+  <a class="navbar-brand" routerLink="/recipes">Recipes</a>
   <button class="navbar-toggler" type="button" (click)="isCollapsed = !isCollapsed">
     <span class="navbar-toggler-icon"></span>
   </button>
@@ -7,24 +7,15 @@
   <div class="collapse navbar-collapse" [ngbCollapse]="isCollapsed">
     <ul class="navbar-nav mr-auto">
       <li class="nav-item">
-        <a class="nav-link" href="#">Home</a>
+        <a class="nav-link" routerLink="/recipes/new">New recipe</a>
       </li>
       <li class="nav-item">
-        <a class="nav-link" href="#">Link</a>
+        <a class="nav-link" routerLink="/recipes/1">One recipe</a>
       </li>
     </ul>
   </div>
 </nav>
 
-
 <div class="container">
-  <recipe-list></recipe-list>
-</div>
-
-<div class="container">
-  <recipe-form></recipe-form>
-</div>
-
-<div class="container">
-  <recipe-detail></recipe-detail>
+  <router-outlet></router-outlet>
 </div>
