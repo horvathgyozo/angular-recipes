@@ -33,7 +33,7 @@ export class RecipeFormComponent implements OnInit {
     if (this.model.id > 0) {
       await this.recipeService.updateRecipe(this.model);
     } else {
-      this.recipeService.addRecipe(this.model);
+      await this.recipeService.addRecipe(this.model);
     }
     this.router.navigateByUrl('/recipes');
   }

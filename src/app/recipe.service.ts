@@ -39,11 +39,8 @@ export class RecipeService {
     return this.http.get<Recipe>(`${this.recipeUrl}/${id}`).toPromise();
   }
 
-  addRecipe(data) {
-    const newRecipe = Object.assign(data, {
-      id: RECIPES.length + 1
-    });
-    RECIPES.push(newRecipe);
+  addRecipe(data): Promise<Recipe> {
+    return this.http.post<Recipe>(`${this.recipeUrl}`, data, httpOptions).toPromise();
   }
 
   updateRecipe(data): Promise<Recipe> {
