@@ -19,19 +19,19 @@ export class RecipeFormComponent implements OnInit {
     private route: ActivatedRoute
   ) { }
 
-  ngOnInit() {
+  async ngOnInit() {
     const id = this.route.snapshot.paramMap.get('id');
     this.model = id === null
       ? new Recipe()
-      : this.recipeService.getRecipe(+id);
+      : await this.recipeService.getRecipe(+id);
   }
 
-  submit(form) {
+  async submit(form) {
     if (!form.valid) {
       return;
     }
     if (this.model.id > 0) {
-      this.recipeService.updateRecipe(this.model);
+      await this.recipeService.updateRecipe(this.model);
     } else {
       this.recipeService.addRecipe(this.model);
     }

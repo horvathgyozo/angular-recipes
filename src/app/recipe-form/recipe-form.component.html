@@ -1,40 +1,42 @@
-<h2 class="display-2 my-3" *ngIf="model.id === 0">New recipe</h2>
-<h2 class="display-2 my-3" *ngIf="model.id > 0">{{ model.title }}</h2>
+<h2 class="display-2 my-3" *ngIf="model?.id === 0">New recipe</h2>
+<h2 class="display-2 my-3" *ngIf="model?.id > 0">{{ model?.title }}</h2>
 
-<form (submit)="submit(recipeForm)" #recipeForm="ngForm">
+<ng-container *ngIf="model">
+  <form (submit)="submit(recipeForm)" #recipeForm="ngForm">
 
-  <div class="form-group">
-    <label for="title">Recipe name</label>
-    <input [(ngModel)]="model.title" type="text" class="form-control" name="title" id="title" placeholder="Recipe name"
-      required
-      pattern=".{3,}"
-      #title="ngModel"
-      [class.is-invalid]="title.invalid && (title.dirty || title.touched)"
-      [class.is-valid]="title.valid"
-    >
-    <div class="invalid-feedback" *ngIf="title.invalid && title.errors.required">
-      Please provide a recipe name!
+    <div class="form-group">
+      <label for="title">Recipe name</label>
+      <input [(ngModel)]="model.title" type="text" class="form-control" name="title" id="title" placeholder="Recipe name"
+        required
+        pattern=".{3,}"
+        #title="ngModel"
+        [class.is-invalid]="title.invalid && (title.dirty || title.touched)"
+        [class.is-valid]="title.valid"
+      >
+      <div class="invalid-feedback" *ngIf="title.invalid && title.errors.required">
+        Please provide a recipe name!
+      </div>
+      <div class="invalid-feedback" *ngIf="title.invalid && title.errors.pattern">
+        A recipe name is at least 3 characters long!
+      </div>
     </div>
-    <div class="invalid-feedback" *ngIf="title.invalid && title.errors.pattern">
-      A recipe name is at least 3 characters long!
+    <div class="form-group">
+      <label for="ingredients">Ingredients</label>
+      <textarea [(ngModel)]="model.ingredients" class="form-control" name="ingredients" id="ingredients" rows="3" placeholder="- ingredient 1
+  - ingredient 2" required></textarea>
+      <div class="invalid-feedback">
+        Please provide at least one ingredient!
+      </div>
     </div>
-  </div>
-  <div class="form-group">
-    <label for="ingredients">Ingredients</label>
-    <textarea [(ngModel)]="model.ingredients" class="form-control" name="ingredients" id="ingredients" rows="3" placeholder="- ingredient 1
-- ingredient 2" required></textarea>
-    <div class="invalid-feedback">
-      Please provide at least one ingredient!
+    <div class="form-group">
+      <label for="description">Description</label>
+      <textarea [(ngModel)]="model.description" class="form-control" name="description" id="description" rows="5" required></textarea>
+      <div class="invalid-feedback">
+        Please provide a description!
+      </div>
     </div>
-  </div>
-  <div class="form-group">
-    <label for="description">Description</label>
-    <textarea [(ngModel)]="model.description" class="form-control" name="description" id="description" rows="5" required></textarea>
-    <div class="invalid-feedback">
-      Please provide a description!
-    </div>
-  </div>
 
-  <button type="submit" class="btn btn-primary" [disabled]="!recipeForm.valid">Submit</button>
-  {{ model | json }}
-</form>
+    <button type="submit" class="btn btn-primary" [disabled]="!recipeForm.valid">Submit</button>
+    {{ model | json }}
+  </form>
+</ng-container>

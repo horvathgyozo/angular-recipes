@@ -20,9 +20,9 @@ export class RecipeDetailComponent implements OnInit {
     private recipeService: RecipeService
   ) { }
 
-  ngOnInit() {
+  async ngOnInit() {
     const id = +this.route.snapshot.paramMap.get('id');
-    this.recipe = this.recipeService.getRecipe(id);
+    this.recipe = await this.recipeService.getRecipe(id);
 
     // this.route.paramMap
     //   .switchMap((params: ParamMap) => {

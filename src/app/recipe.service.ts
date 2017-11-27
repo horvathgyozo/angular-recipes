@@ -35,8 +35,8 @@ export class RecipeService {
       .map(response => response.data).toPromise();
   }
 
-  getRecipe(id: number) {
-    return RECIPES.find(recipe => recipe.id === id);
+  getRecipe(id: number): Promise<Recipe> {
+    return this.http.get<Recipe>(`${this.recipeUrl}/${id}`).toPromise();
   }
 
   addRecipe(data) {
@@ -46,9 +46,8 @@ export class RecipeService {
     RECIPES.push(newRecipe);
   }
 
-  updateRecipe(data) {
-    const recipe = this.getRecipe(data.id);
-    Object.assign(recipe, data);
+  updateRecipe(data): Promise<Recipe> {
+    return this.http.put<Recipe>(`${this.recipeUrl}/${data.id}`, data, httpOptions).toPromise();
   }
 
 }
