@@ -8,6 +8,7 @@ import { RecipeListComponent } from './recipe-list/recipe-list.component';
 import { RecipeFormComponent } from './recipe-form/recipe-form.component';
 import { RecipeDetailComponent } from './recipe-detail/recipe-detail.component';
 import { FilterTextComponent } from './filter-text/filter-text.component';
+import { RecipeService } from './recipe.service';
 
 @NgModule({
   declarations: [
@@ -22,7 +23,7 @@ import { FilterTextComponent } from './filter-text/filter-text.component';
     NgbModule.forRoot(),
     RoutingModule
   ],
-  providers: [],
+  providers: [RecipeService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
