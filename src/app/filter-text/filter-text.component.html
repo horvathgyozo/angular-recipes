@@ -1,0 +1,10 @@
+<form class="w-100">
+  <div class="form-group">
+    <input type="text"
+      class="form-control"
+      placeholder="Search for recipes"
+      [value]="text"
+      (input)="onFilterChange(filter.value)"
+      #filter>
+  </div>
+</form>

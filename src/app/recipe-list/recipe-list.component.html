@@ -1,17 +1,9 @@
 <h2 class="display-2 my-3">Recipes</h2>
 
 <div class="row">
-  <form class="w-100">
-    <div class="form-group">
-      <input type="text"
-        class="form-control"
-        placeholder="Search for recipes"
-        [value]="filterText"
-        (input)="onFilterChange(filter.value)"
-        #filter
-      >
-    </div>
-  </form>
+  <div class="col">
+    <filter-text [value]="filterText" (change)="onFilterChange($event)"></filter-text>
+  </div>
 </div>
 
 <div class="row">

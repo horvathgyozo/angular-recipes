@@ -7,13 +7,15 @@ import { AppComponent } from './app.component';
 import { RecipeListComponent } from './recipe-list/recipe-list.component';
 import { RecipeFormComponent } from './recipe-form/recipe-form.component';
 import { RecipeDetailComponent } from './recipe-detail/recipe-detail.component';
+import { FilterTextComponent } from './filter-text/filter-text.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     RecipeListComponent,
     RecipeFormComponent,
-    RecipeDetailComponent
+    RecipeDetailComponent,
+    FilterTextComponent
   ],
   imports: [
     BrowserModule,
