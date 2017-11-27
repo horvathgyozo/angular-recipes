@@ -1,5 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Recipe } from '../recipe';
+import { RecipeService } from '../recipe.service';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'recipe-form',
@@ -10,7 +12,10 @@ export class RecipeFormComponent implements OnInit {
 
   model: Recipe;
 
-  constructor() { }
+  constructor(
+    private recipeService: RecipeService,
+    private router: Router
+  ) { }
 
   ngOnInit() {
     this.model = new Recipe();
@@ -20,7 +25,8 @@ export class RecipeFormComponent implements OnInit {
     if (!form.valid) {
       return;
     }
-
+    this.recipeService.addRecipe(this.model);
+    this.router.navigateByUrl('/recipes');
   }
 
 }

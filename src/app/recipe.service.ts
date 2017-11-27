@@ -21,4 +21,16 @@ export class RecipeService {
     return RECIPES.find(recipe => recipe.id === id);
   }
 
+  addRecipe(data) {
+    const newRecipe = Object.assign(data, {
+      id: RECIPES.length + 1
+    });
+    RECIPES.push(newRecipe);
+  }
+
+  updateRecipe(data) {
+    const recipe = this.getRecipe(data.id);
+    Object.assign(recipe, data);
+  }
+
 }
