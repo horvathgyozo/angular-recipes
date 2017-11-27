@@ -7,9 +7,14 @@ import { Component, OnInit } from '@angular/core';
 })
 export class RecipeListComponent implements OnInit {
 
+  filterText: string = "";
+
   constructor() { }
 
   ngOnInit() {
   }
 
+  onFilterChange(value) {
+    this.filterText = value;
+  }
 }
