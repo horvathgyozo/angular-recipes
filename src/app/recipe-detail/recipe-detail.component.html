@@ -20,3 +20,9 @@
     <p>{{ recipe.description }}</p>
   </div>
 </div>
+
+<div class="row">
+  <div class="col">
+    <a [routerLink]="['/recipes', recipe.id, 'edit']" class="btn btn-primary">Edit</a>
+  </div>
+</div>

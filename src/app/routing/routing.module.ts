@@ -23,6 +23,10 @@ const routes: Routes = [
     path: 'recipes/:id',
     component: RecipeDetailComponent
   },
+  {
+    path: 'recipes/:id/edit',
+    component: RecipeFormComponent
+  },
 ];
 
 @NgModule({

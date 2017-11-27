@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { Recipe } from '../recipe';
 import { RecipeService } from '../recipe.service';
 import { Router } from '@angular/router';
+import { ActivatedRoute } from '@angular/router';
 
 @Component({
   selector: 'recipe-form',
@@ -14,18 +15,26 @@ export class RecipeFormComponent implements OnInit {
 
   constructor(
     private recipeService: RecipeService,
-    private router: Router
+    private router: Router,
+    private route: ActivatedRoute
   ) { }
 
   ngOnInit() {
-    this.model = new Recipe();
+    const id = this.route.snapshot.paramMap.get('id');
+    this.model = id === null
+      ? new Recipe()
+      : this.recipeService.getRecipe(+id);
   }
 
   submit(form) {
     if (!form.valid) {
       return;
     }
-    this.recipeService.addRecipe(this.model);
+    if (this.model.id > 0) {
+      this.recipeService.updateRecipe(this.model);
+    } else {
+      this.recipeService.addRecipe(this.model);
+    }
     this.router.navigateByUrl('/recipes');
   }
 

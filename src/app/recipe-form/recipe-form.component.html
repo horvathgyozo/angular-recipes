@@ -1,4 +1,5 @@
-<h2 class="display-2 my-3">New recipe</h2>
+<h2 class="display-2 my-3" *ngIf="model.id === 0">New recipe</h2>
+<h2 class="display-2 my-3" *ngIf="model.id > 0">{{ model.title }}</h2>
 
 <form (submit)="submit(recipeForm)" #recipeForm="ngForm">
 
