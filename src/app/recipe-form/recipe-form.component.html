@@ -1,37 +1,39 @@
 <h2 class="display-2 my-3">New recipe</h2>
 
-<form action="">
+<form (submit)="submit(recipeForm)" #recipeForm="ngForm">
 
   <div class="form-group">
-    <label for="name">Recipe name</label>
-    <input type="text" class="form-control" id="name" placeholder="Recipe name" required>
-    <div class="invalid-feedback">
+    <label for="title">Recipe name</label>
+    <input [(ngModel)]="model.title" type="text" class="form-control" name="title" id="title" placeholder="Recipe name"
+      required
+      pattern=".{3,}"
+      #title="ngModel"
+      [class.is-invalid]="title.invalid && (title.dirty || title.touched)"
+      [class.is-valid]="title.valid"
+    >
+    <div class="invalid-feedback" *ngIf="title.invalid && title.errors.required">
       Please provide a recipe name!
+    </div>
+    <div class="invalid-feedback" *ngIf="title.invalid && title.errors.pattern">
+      A recipe name is at least 3 characters long!
     </div>
   </div>
   <div class="form-group">
-    <label for="category">Category</label>
-    <select class="form-control" id="category" required>
-      <option>Soup</option>
-      <option>Desert</option>
-    </select>
-  </div>
-  <div class="form-group">
     <label for="ingredients">Ingredients</label>
-    <textarea class="form-control" id="ingredients" rows="3" placeholder="- ingredient 1
-    - ingredient 2" required></textarea>
+    <textarea [(ngModel)]="model.ingredients" class="form-control" name="ingredients" id="ingredients" rows="3" placeholder="- ingredient 1
+- ingredient 2" required></textarea>
     <div class="invalid-feedback">
       Please provide at least one ingredient!
     </div>
   </div>
   <div class="form-group">
     <label for="description">Description</label>
-    <textarea class="form-control" id="description" rows="5" required></textarea>
+    <textarea [(ngModel)]="model.description" class="form-control" name="description" id="description" rows="5" required></textarea>
     <div class="invalid-feedback">
       Please provide a description!
     </div>
   </div>
 
-  <button type="submit" class="btn btn-primary">Submit</button>
-
+  <button type="submit" class="btn btn-primary" [disabled]="!recipeForm.valid">Submit</button>
+  {{ model | json }}
 </form>

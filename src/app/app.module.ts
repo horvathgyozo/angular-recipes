@@ -1,7 +1,8 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
-import {NgbModule} from '@ng-bootstrap/ng-bootstrap';
+import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { RoutingModule } from './routing/routing.module';
+import { FormsModule } from '@angular/forms';
 
 import { AppComponent } from './app.component';
 import { RecipeListComponent } from './recipe-list/recipe-list.component';
@@ -21,7 +22,8 @@ import { RecipeService } from './recipe.service';
   imports: [
     BrowserModule,
     NgbModule.forRoot(),
-    RoutingModule
+    RoutingModule,
+    FormsModule,
   ],
   providers: [RecipeService],
   bootstrap: [AppComponent]
