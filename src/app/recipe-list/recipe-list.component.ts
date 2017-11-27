@@ -17,8 +17,8 @@ export class RecipeListComponent implements OnInit {
     private recipeService: RecipeService
   ) { }
 
-  ngOnInit() {
-    this.recipes = this.recipeService.getRecipes();
+  async ngOnInit() {
+    this.recipes = await this.recipeService.getRecipes();
     this.filterRecipes();
   }
 

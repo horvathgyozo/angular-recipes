@@ -1,5 +1,11 @@
 import { Injectable } from '@angular/core';
 import { Recipe } from './recipe';
+import { HttpClient, HttpHeaders } from '@angular/common/http';
+import 'rxjs/add/operator/map';
+
+const httpOptions = {
+  headers: new HttpHeaders({ 'Content-Type': 'application/json' })
+};
 
 const RECIPES: Recipe[] = [
   { id: 1, title: 'recipe1', ingredients: 'ingr1', description: 'desc1', imgUrl: 'http://www.mnhsz.com/storage/upload/2016/gulyas1.jpg' },
@@ -8,13 +14,25 @@ const RECIPES: Recipe[] = [
   { id: 4, title: 'recipe4', ingredients: 'ingr4', description: 'desc4', imgUrl: 'http://www.nosalty.hu/files/imagecache/recept/recept_kepek/bajai-halaszle.jpg' },
 ];
 
+interface FeathersResponse<T> {
+  total: number,
+  limit: number,
+  skip: number,
+  data: T[]
+};
+
 @Injectable()
 export class RecipeService {
 
-  constructor() { }
+  private recipeUrl = 'http://localhost:3030/recipes';
 
-  getRecipes() {
-    return RECIPES;
+  constructor(
+    private http: HttpClient
+  ) { }
+
+  getRecipes(): Promise<Recipe[]> {
+    return this.http.get<FeathersResponse<Recipe>>(this.recipeUrl)
+      .map(response => response.data).toPromise();
   }
 
   getRecipe(id: number) {

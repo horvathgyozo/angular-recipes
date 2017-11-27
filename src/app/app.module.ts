@@ -3,6 +3,7 @@ import { NgModule } from '@angular/core';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { RoutingModule } from './routing/routing.module';
 import { FormsModule } from '@angular/forms';
+import { HttpClientModule } from "@angular/common/http";
 
 import { AppComponent } from './app.component';
 import { RecipeListComponent } from './recipe-list/recipe-list.component';
@@ -24,6 +25,7 @@ import { RecipeService } from './recipe.service';
     NgbModule.forRoot(),
     RoutingModule,
     FormsModule,
+    HttpClientModule,
   ],
   providers: [RecipeService],
   bootstrap: [AppComponent]
