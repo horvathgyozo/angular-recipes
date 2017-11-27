@@ -8,7 +8,7 @@ import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
 export class FilterTextComponent implements OnInit {
 
   @Input('value') text: string = "";
-  @Output() change: EventEmitter<string> = new EventEmitter<string>();
+  @Output() filterChange: EventEmitter<string> = new EventEmitter<string>();
 
   constructor() { }
 
@@ -17,7 +17,7 @@ export class FilterTextComponent implements OnInit {
 
   onFilterChange(value) {
     this.text = value;
-    this.change.emit(value);
+    this.filterChange.emit(value);
   }
 
 }

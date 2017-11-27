@@ -2,14 +2,14 @@
 
 <div class="row">
   <div class="col">
-    <filter-text [value]="filterText" (change)="onFilterChange($event)"></filter-text>
+    <filter-text [value]="filterText" (filterChange)="onFilterChange($event)"></filter-text>
   </div>
 </div>
 
 <div class="row">
 
-  <div class="col-12 col-md-6 col-lg-4" *ngFor="let recipe of filteredRecipes">
-    <div class="card my-3">
+  <div class="col-12 col-md-6 col-lg-4" *ngFor="let recipe of recipes">
+    <div class="card my-3" [class.bg-warning]="filteredRecipes.includes(recipe)">
       <img class="card-img-top" [src]="recipe.imgUrl">
       <div class="card-body">
         <h4 class="card-title">{{ recipe.title }}</h4>

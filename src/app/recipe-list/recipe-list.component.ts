@@ -23,7 +23,7 @@ export class RecipeListComponent implements OnInit {
   }
 
   filterRecipes() {
-    this.filteredRecipes = this.recipes.filter(recipe => recipe.title.includes(this.filterText));
+    this.filteredRecipes = this.filterText == '' ?  [] : this.recipes.filter(recipe => recipe.title.includes(this.filterText));
   }
 
   onFilterChange(value) {
