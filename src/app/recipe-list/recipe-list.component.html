@@ -14,7 +14,7 @@
       <div class="card-body">
         <h4 class="card-title">{{ recipe.title }}</h4>
         <p class="card-text">{{ recipe.description }}</p>
-        <a routerLink="/recipes/1" class="btn btn-primary">Details</a>
+        <a [routerLink]="['/recipes', recipe.id]" class="btn btn-primary">Details</a>
       </div>
     </div>
   </div>
