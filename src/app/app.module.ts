@@ -11,6 +11,7 @@ import { RecipeFormComponent } from './recipe-form/recipe-form.component';
 import { RecipeDetailComponent } from './recipe-detail/recipe-detail.component';
 import { FilterTextComponent } from './filter-text/filter-text.component';
 import { RecipeService } from './recipe.service';
+import { AuthService } from './auth.service';
 
 @NgModule({
   declarations: [
@@ -27,7 +28,7 @@ import { RecipeService } from './recipe.service';
     FormsModule,
     HttpClientModule,
   ],
-  providers: [RecipeService],
+  providers: [RecipeService, AuthService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

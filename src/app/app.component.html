@@ -13,6 +13,23 @@
         <a class="nav-link" routerLink="/recipes/1">One recipe</a>
       </li>
     </ul>
+
+    <ul class="navbar-nav" *ngIf="!authService.isLoggedIn">
+      <li class="nav-item">
+        <a class="nav-link" routerLink="/login">Login</a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" routerLink="/register">Register</a>
+      </li>
+    </ul>
+    <ul class="navbar-nav" *ngIf="authService.isLoggedIn">
+      <span class="navbar-text">
+        Hello userke!
+      </span>
+      <li class="nav-item">
+        <a class="nav-link" routerLink="/logout">Logout</a>
+      </li>
+    </ul>
   </div>
 </nav>
 
