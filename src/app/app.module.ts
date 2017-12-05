@@ -13,6 +13,7 @@ import { FilterTextComponent } from './filter-text/filter-text.component';
 import { RecipeService } from './recipe.service';
 import { AuthService } from './auth.service';
 import { LoginComponent } from './login/login.component';
+import { AuthGuard } from './auth.guard';
 
 @NgModule({
   declarations: [
@@ -30,7 +31,7 @@ import { LoginComponent } from './login/login.component';
     FormsModule,
     HttpClientModule,
   ],
-  providers: [RecipeService, AuthService],
+  providers: [RecipeService, AuthService, AuthGuard],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
