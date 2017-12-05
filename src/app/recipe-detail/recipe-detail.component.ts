@@ -5,6 +5,7 @@ import { Recipe } from '../recipe';
 import { ParamMap } from '@angular/router';
 import { Observable } from "rxjs";
 import 'rxjs/add/operator/switchMap';
+import { Message } from '../message';
 
 @Component({
   selector: 'recipe-detail',
@@ -14,6 +15,7 @@ import 'rxjs/add/operator/switchMap';
 export class RecipeDetailComponent implements OnInit {
 
   recipe: Recipe;
+  messages: Message[];
 
   constructor(
     private route: ActivatedRoute,
@@ -23,6 +25,7 @@ export class RecipeDetailComponent implements OnInit {
   async ngOnInit() {
     const id = +this.route.snapshot.paramMap.get('id');
     this.recipe = await this.recipeService.getRecipe(id);
+    this.messages = await this.recipeService.getMessages(id);
 
     // this.route.paramMap
     //   .switchMap((params: ParamMap) => {

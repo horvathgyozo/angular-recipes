@@ -1,0 +1,8 @@
+<h3>Messages</h3>
+
+<ul class="list-group">
+  <li class="list-group-item" *ngFor="let message of messages">
+    <p class="mb-1">{{ message.text }}</p>
+    <small class="text-muted">{{ message.user.name  }}</small>
+  </li>
+</ul>

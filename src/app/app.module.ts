@@ -14,6 +14,7 @@ import { RecipeService } from './recipe.service';
 import { AuthService } from './auth.service';
 import { LoginComponent } from './login/login.component';
 import { AuthGuard } from './auth.guard';
+import { RecipeMessagesComponent } from './recipe-messages/recipe-messages.component';
 
 @NgModule({
   declarations: [
@@ -22,7 +23,8 @@ import { AuthGuard } from './auth.guard';
     RecipeFormComponent,
     RecipeDetailComponent,
     FilterTextComponent,
-    LoginComponent
+    LoginComponent,
+    RecipeMessagesComponent
   ],
   imports: [
     BrowserModule,

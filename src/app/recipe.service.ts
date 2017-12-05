@@ -2,6 +2,7 @@ import { Injectable } from '@angular/core';
 import { Recipe } from './recipe';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import 'rxjs/add/operator/map';
+import { Message } from './message';
 
 const httpOptions = {
   headers: new HttpHeaders({ 'Content-Type': 'application/json' })
@@ -25,6 +26,7 @@ interface FeathersResponse<T> {
 export class RecipeService {
 
   private recipeUrl = 'http://localhost:3030/recipes';
+  private messageUrl = 'http://localhost:3030/messages';
 
   constructor(
     private http: HttpClient
@@ -55,6 +57,11 @@ export class RecipeService {
 
   updateRecipe(data): Promise<Recipe> {
     return this.http.put<Recipe>(`${this.recipeUrl}/${data.id}`, data, this.httpOptions()).toPromise();
+  }
+
+  getMessages(recipeId: number): Promise<Message[]> {
+    return this.http.get<FeathersResponse<Message>>(this.messageUrl + `?recipeId=${recipeId}`, this.httpOptions())
+      .map(response => response.data).toPromise();
   }
 
 }
