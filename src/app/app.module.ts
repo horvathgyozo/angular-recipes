@@ -12,6 +12,7 @@ import { RecipeDetailComponent } from './recipe-detail/recipe-detail.component';
 import { FilterTextComponent } from './filter-text/filter-text.component';
 import { RecipeService } from './recipe.service';
 import { AuthService } from './auth.service';
+import { LoginComponent } from './login/login.component';
 
 @NgModule({
   declarations: [
@@ -19,7 +20,8 @@ import { AuthService } from './auth.service';
     RecipeListComponent,
     RecipeFormComponent,
     RecipeDetailComponent,
-    FilterTextComponent
+    FilterTextComponent,
+    LoginComponent
   ],
   imports: [
     BrowserModule,

@@ -24,7 +24,7 @@
     </ul>
     <ul class="navbar-nav" *ngIf="authService.isLoggedIn">
       <span class="navbar-text">
-        Hello userke!
+        Hello {{ authService?.user?.name }}!
       </span>
       <li class="nav-item">
         <a class="nav-link" routerLink="/logout">Logout</a>
