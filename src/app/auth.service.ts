@@ -57,4 +57,10 @@ export class AuthService {
       .map(response => response.data[0])
       .toPromise();
   }
+
+  logout() {
+    window.localStorage.removeItem('token');
+    this.isLoggedIn = false;
+    this.user = null;
+  }
 }
