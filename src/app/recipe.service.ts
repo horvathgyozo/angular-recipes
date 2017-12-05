@@ -30,6 +30,16 @@ export class RecipeService {
     private http: HttpClient
   ) { }
 
+  private httpOptions() {
+    const headers = { 'Content-Type': 'application/json' };
+    if (window.localStorage.getItem('token')) {
+      headers['Authorization'] = window.localStorage.getItem('token');
+    }
+    return {
+      headers: new HttpHeaders(headers)
+    };
+  }
+
   getRecipes(): Promise<Recipe[]> {
     return this.http.get<FeathersResponse<Recipe>>(this.recipeUrl)
       .map(response => response.data).toPromise();
@@ -40,11 +50,11 @@ export class RecipeService {
   }
 
   addRecipe(data): Promise<Recipe> {
-    return this.http.post<Recipe>(`${this.recipeUrl}`, data, httpOptions).toPromise();
+    return this.http.post<Recipe>(`${this.recipeUrl}`, data, this.httpOptions()).toPromise();
   }
 
   updateRecipe(data): Promise<Recipe> {
-    return this.http.put<Recipe>(`${this.recipeUrl}/${data.id}`, data, httpOptions).toPromise();
+    return this.http.put<Recipe>(`${this.recipeUrl}/${data.id}`, data, this.httpOptions()).toPromise();
   }
 
 }
