@@ -35,4 +35,14 @@ export class RecipeDetailComponent implements OnInit {
     //   .subscribe();
   }
 
+  async addFavourite() {
+    this.recipe.isFavourite = true;
+    await this.recipeService.addFavouriteRecipe(this.recipe.id);
+  }
+
+  async removeFavourite() {
+    this.recipe.isFavourite = false;
+    await this.recipeService.deleteFavouriteRecipe(this.recipe.id);
+  }
+
 }

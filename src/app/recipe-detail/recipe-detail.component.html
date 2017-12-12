@@ -1,4 +1,7 @@
-<h2 class="display-2 my-3">{{ recipe?.title }}</h2>
+<h2 class="display-2 my-3">{{ recipe?.title }}
+<span *ngIf="recipe?.isFavourite === true" (click)="removeFavourite()">♥</span>
+<span *ngIf="recipe?.isFavourite === false" (click)="addFavourite()">♡</span>
+</h2>
 
 <ng-container *ngIf="recipe">
   <div class="row">

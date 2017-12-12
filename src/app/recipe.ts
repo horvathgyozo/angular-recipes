@@ -4,4 +4,5 @@ export class Recipe {
   ingredients: string = '';
   description: string = '';
   imgUrl: string = '';
+  isFavourite?: boolean = null;
 }

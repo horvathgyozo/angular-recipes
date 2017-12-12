@@ -27,6 +27,7 @@ export class RecipeService {
 
   private recipeUrl = 'http://localhost:3030/recipes';
   private messageUrl = 'http://localhost:3030/messages';
+  private favouriteUrl = 'http://localhost:3030/favourites';
 
   constructor(
     private http: HttpClient
@@ -43,12 +44,12 @@ export class RecipeService {
   }
 
   getRecipes(): Promise<Recipe[]> {
-    return this.http.get<FeathersResponse<Recipe>>(this.recipeUrl)
+    return this.http.get<FeathersResponse<Recipe>>(this.recipeUrl, this.httpOptions())
       .map(response => response.data).toPromise();
   }
 
   getRecipe(id: number): Promise<Recipe> {
-    return this.http.get<Recipe>(`${this.recipeUrl}/${id}`).toPromise();
+    return this.http.get<Recipe>(`${this.recipeUrl}/${id}`, this.httpOptions()).toPromise();
   }
 
   addRecipe(data): Promise<Recipe> {
@@ -62,6 +63,14 @@ export class RecipeService {
   getMessages(recipeId: number): Promise<Message[]> {
     return this.http.get<FeathersResponse<Message>>(this.messageUrl + `?recipeId=${recipeId}`, this.httpOptions())
       .map(response => response.data).toPromise();
+  }
+
+  addFavouriteRecipe(recipeId: number): Promise<boolean> {
+    return this.http.post<boolean>(`${this.favouriteUrl}/${recipeId}`, null, this.httpOptions()).toPromise();
+  }
+
+  deleteFavouriteRecipe(recipeId: number): Promise<boolean> {
+    return this.http.delete<boolean>(`${this.favouriteUrl}/${recipeId}`, this.httpOptions()).toPromise();
   }
 
 }
